@@ -34,11 +34,12 @@ void contextLoads() {
 @Test
 public void testFindAll()
 {
-// given
-// if tables contains records 
+
 	
 List<Product> products = new ArrayList<>();
-//products.add(new Product());
+products.add(new Product());
+products.add(new Product());
+
 
 when(productRepository.findAll()).thenReturn(products);
 
@@ -46,7 +47,9 @@ when(productRepository.findAll()).thenReturn(products);
 List<Product> result = productapi.findAll().getBody();
 
 // then
-assertThat(result.size()).isEqualTo(0);
+assertThat(result.size()).isEqualTo(2);
+//given
+//if tables contains records 
 
 // assertThat(result.get(0).getFirstName())
 // .isEqualTo(employee1.getFirstName());
