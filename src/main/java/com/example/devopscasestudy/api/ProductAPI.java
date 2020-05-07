@@ -69,6 +69,13 @@ public class ProductAPI {
 	    }
 	 
 	 
+	 @GetMapping("/products/find/{name}")
+		public ResponseEntity<List<Product>> findByName(@PathVariable("name")String name){
+			List<Product> products=productRepository.findByProductNameIgnoreCase(name);
+			return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+		}
+		
+	 
 	 
 	/*@DeleteMapping("/products/{productId}")
 	public ResponseEntity<List<Product>>deleteById(@PathVariable("productId")int productId){

@@ -7,9 +7,12 @@ import org.springframework.stereotype.Repository;
 import com.example.devopscasestudy.model.Product;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product,Integer> {
+public interface ProductRepository extends JpaRepository<Product,Integer>{
 	
 	List<Product> deleteById(int productId);
 	List<Product> findById(int productId);
 	List<Product> findByPriceGreaterThan(double price);
+	
+	List<Product> findByProductNameIgnoreCase(String productName);
+	// ingore case ignores the case sensitive name upper case or lower case
 }
