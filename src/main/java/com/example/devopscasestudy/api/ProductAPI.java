@@ -36,13 +36,13 @@ public class ProductAPI {
 	public ResponseEntity<List<Product>> findAll(){
 		logger.info("Processing findAll request");
 		List<Product> products=productRepository.findAll();
-		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
+		return new ResponseEntity<>(products,HttpStatus.OK);
 	}
 	
 	@GetMapping("/products/{price}")
 	public ResponseEntity<List<Product>> findByPrice(@PathVariable("price")double price){
 		List<Product> products=productRepository.findByPriceGreaterThan(price);
-		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+		return new ResponseEntity<>(products, HttpStatus.OK);
 	}
 	
 	
@@ -50,45 +50,26 @@ public class ProductAPI {
 	@PostMapping("/products")
 	public ResponseEntity<Product> save(@RequestBody Product product){
 		productRepository.save(product);
-		return new ResponseEntity<Product>(product, HttpStatus.CREATED);
+		return new ResponseEntity<>(product, HttpStatus.CREATED);
 	}
 	@PostMapping("/products/bulk")
     public ResponseEntity<List<Product>> saveAll( @RequestBody List <Product> product){
 		
         productRepository.saveAll(product);
         
-        return new ResponseEntity<List<Product>>(product, HttpStatus.CREATED);
+        return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 	
-	 @PutMapping("/products/{productId}")
-	    public ResponseEntity<Product> updateProduct(@PathVariable("productId") int productId,
-	      @Valid   @RequestBody Product product)  {
-	        List<Product> Existingproducts = productRepository.findById(productId);
-	        product.setProductId(product.getProductId());
-	        product.setProductName(product.getProductName());
-	        product.setPrice(product.getPrice());
-	        product.setImageUrl(product.getImageUrl());
-	        product.setStarRating(product.getStarRating());
-	        product.setReleaseDate(product.getReleaseDate());
-	        product.setProductCode(product.getProductCode());
-	        return new ResponseEntity<Product>(product, HttpStatus.OK);
-	    }
-	 
 	 
 	 @GetMapping("/products/find/{name}")
 		public ResponseEntity<List<Product>> findByName(@PathVariable("name")String name){
 			List<Product> products=productRepository.findByProductNameIgnoreCase(name);
-			return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+			return new ResponseEntity<>(products, HttpStatus.OK);
 		}
 		
 	 
 	 
-	/*@DeleteMapping("/products/{productId}")
-	public ResponseEntity<List<Product>>deleteById(@PathVariable("productId")int productId){
-		List<Product> products=productRepository.deleteById(productId);
-		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
-	}
-	*/
+	
 	 @DeleteMapping("/products/{productId}")
      
      public @ResponseBody ResponseEntity<StringResponse> delete(@PathVariable("productId")int productId){
