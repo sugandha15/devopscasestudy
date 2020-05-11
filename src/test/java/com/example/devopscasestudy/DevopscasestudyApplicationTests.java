@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.devopscasestudy.api.ProductAPI;
+import com.example.devopscasestudy.api.ProductDTO;
 import com.example.devopscasestudy.model.Product;
 import com.example.devopscasestudy.repo.ProductRepository;
 
@@ -44,7 +45,7 @@ products.add(new Product());
 when(productRepository.findAll()).thenReturn(products);
 
 // when
-List<Product> result = productapi.findAll().getBody();
+List<ProductDTO> result = productapi.findAll().getBody();
 
 // then
 assertThat(result.size()).isEqualTo(2);
