@@ -9,24 +9,32 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.example.devopscasestudy.api.ProductAPI;
 import com.example.devopscasestudy.api.ProductDTO;
+import com.example.devopscasestudy.api.ProductFacade;
+import com.example.devopscasestudy.api.ProductService;
 import com.example.devopscasestudy.model.Product;
 import com.example.devopscasestudy.repo.ProductRepository;
 
 @SpringBootTest
-class DevopscasestudyApplicationTests {
+public class DevopscasestudyApplicationTests {
 
 
 
 @InjectMocks
 ProductAPI productapi;
 
-
 @Mock
-ProductRepository productRepository;
+ProductFacade productFacade;
+
+
+
+
+
 
 @Test
 void contextLoads() {
@@ -36,13 +44,16 @@ void contextLoads() {
 public void testFindAll()
 {
 // given
-// if tables contains records 
-	
-List<Product> products = new ArrayList<>();
-products.add(new Product());
-products.add(new Product());	
 
-when(productRepository.findAll()).thenReturn(products);
+
+List<ProductDTO> products = new ArrayList<>();
+products.add(new ProductDTO());
+products.add(new ProductDTO());
+//products.add(new Product());
+
+when(productFacade.findAll()).thenReturn(products);
+
+
 
 // when
 List<ProductDTO> result = productapi.findAll().getBody();
