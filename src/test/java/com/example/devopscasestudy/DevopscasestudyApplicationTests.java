@@ -36,11 +36,11 @@ ProductFacade productFacade;
 
 
 
-@Test
+//@Test
 void contextLoads() {
 }
 
-@Test
+//@Test
 public void testFindAll()
 {
 // given

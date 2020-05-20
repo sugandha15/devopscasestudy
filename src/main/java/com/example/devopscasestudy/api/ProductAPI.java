@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.devopscasestudy.repo.ProductRepository;
 
 @RestController
 public class ProductAPI {
@@ -63,13 +64,16 @@ return new ResponseEntity<>(productFacade.findByProductName(name), HttpStatus.OK
 public @ResponseBody ResponseEntity<StringResponse> delete(@PathVariable("productId")int productId){
 productFacade.delete(productId);
 
-
-
-
-
 return new ResponseEntity<>(new StringResponse("Deleted Order "+productId), HttpStatus.OK);
 
 }
+//@RequestMapping(value="/products/{productId}", method =RequestMethod.PUT )
+@PutMapping("/products/update/{productId}")
+public ResponseEntity<List<ProductDTO>> findByProductId(@PathVariable("productId")int productId){
+	return null;
+	
+}
+
 
 
 // app.post('/products',(req,res)=>)
