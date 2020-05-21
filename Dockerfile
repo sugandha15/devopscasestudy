@@ -23,4 +23,3 @@ CMD java -jar /home/devopscasestudy-docker-jenkins.war
 
 
 COPY --from=maven_build /tmp/target/devopscasestudy-docker-jenkins.war /home/devopscasestudy-docker-jenkins.war
-aven_build /tmp/target/devopscasestudy-docker-jenkins.war /home/devopscasestudy-docker-jenkins.war
